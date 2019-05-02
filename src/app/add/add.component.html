@@ -1,0 +1,95 @@
+<div class="row pt-5">
+  <div class="col-md-6 mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <h3 class="mb-0">Add User</h3>
+      </div>
+      <div class="card-body">
+        <form
+          class="form"
+          #f="ngForm"
+          [formGroup]="addUserForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="alert alert-danger" *ngIf="invalidUser">
+            <div>{{ userResponse }}</div>
+          </div>
+          <div class="form-group">
+            <label for="">Firstname</label>
+            <input
+              formControlName="firstname"
+              name="firstname"
+              type="text"
+              class="form-control rounded-0"
+            />
+            <div
+              *ngIf="firstname.touched && firstname.invalid"
+              class="alert alert-danger"
+            >
+              <div *ngIf="firstname.errors.required">Firstname is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Lastname</label>
+            <input
+              formControlName="lastname"
+              name="lastname"
+              type="text"
+              class="form-control rounded-0"
+            />
+            <div
+              *ngIf="lastname.touched && lastname.invalid"
+              class="alert alert-danger"
+            >
+              <div *ngIf="lastname.errors.required">Lastname is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Email</label>
+            <input
+              formControlName="email"
+              name="email"
+              type="text"
+              class="form-control rounded-0"
+            />
+
+            <div
+              *ngIf="email.touched && email.invalid"
+              class="alert alert-danger"
+            >
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.email">
+                Email must be a valid email address
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="">Phone</label>
+            <input
+              formControlName="phone"
+              name="phone"
+              type="phone"
+              class="form-control rounded-0"
+            />
+            <div
+              *ngIf="phone.touched && phone.invalid"
+              class="alert alert-danger"
+            >
+              <div *ngIf="phone.errors.required">Phone is required</div>
+              <div *ngIf="phone.errors.pattern">
+                Phone number is invalid.
+              </div>
+            </div>
+          </div>
+          <button
+            [disabled]="!f.valid"
+            type="submit"
+            class="btn btn-primary float-right"
+          >
+            Add User
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
